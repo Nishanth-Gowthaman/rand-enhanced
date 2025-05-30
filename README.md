@@ -1,6 +1,6 @@
 # Rand Enhanced
 
-It's a fast, statistically-strong PRNG with 32-bit integers that replaces `rand()` in C99 for security compliance.
+It's a fast, statistically-strong PRNG with 32-bit integers that replaces 16-bit `rand()` in C99 for security compliance.
 
 `rand_enhanced()` is the randomization function that generates a 16-bit, pseudorandom, unsigned integer.
 
