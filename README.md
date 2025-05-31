@@ -4,7 +4,7 @@ It's a fast, statistically-strong PRNG with 32-bit integers that replaces 16-bit
 
 `rand_enhanced_c89()` is the randomization function that generates a 16-bit, pseudorandom, unsigned integer for C89.
 
-`rand_enhanced_c99()` is the randomization function that generates a 16-bit, pseudorandom, unsigned integer for C99 and beyond.
+`rand_enhanced_c99()` is the randomization function that generates a 16-bit, pseudorandom, unsigned integer for C99 and beyond. It's faster than `rand_enhanced_c89()`.
 
 It accepts the following argument.
 
