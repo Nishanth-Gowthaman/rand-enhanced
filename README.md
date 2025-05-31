@@ -10,8 +10,6 @@ It accepts the following argument.
 
 1. `s` is the pointer that contains the state. Each state integer must be initialized with any combination of values.
 
-It returns a 16-bit unsigned integer pseudorandom number result.
-
 It has a minimum period of 2³² without broken cycles, therefore meeting the [POSIX minimum period requirements](https://pubs.opengroup.org/onlinepubs/9699919799/functions/rand.html) of `rand()`.
 
 Incrementing `b` outside of `rand_enhanced_c89()` and `rand_enhanced_c99()` behaves as an interdimensional jump function that starts a different cycle with a period of at least 2³².
